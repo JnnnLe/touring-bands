@@ -7,15 +7,27 @@ class Search extends Component {
   constructor(props) {
     super();
     this.state = {
-      queryArtist : ''
+      queryArtist : 'pink'
     }
+    this.getArtist = this.getArtist.bind(this);
+  }
+
+  getArtist = () => {
+    axios.get(`https://rest.bandsintown.com/artists/${this.state.queryArtist}/events?app_id=${config.apiKey}`)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
   }
 
   render() {
+    this.getArtist();
     return (
       <div>
-        <form onSubmit={this.handleSubmit}>
-          <input type="text" value={this.state.queryArtist} onChange={this.handleChange} />
+        <form>
+          <input type="text" />
           <br />
           <input type="submit" value="Submit" />
         </form>
