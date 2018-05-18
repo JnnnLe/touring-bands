@@ -13,7 +13,8 @@ class App extends Component {
   constructor(props) {
     super();
     this.state = {
-      queryArtist: ''
+      queryArtist: '',
+      formattedArtistName: ''
     }
 
     this.getArtist = this.getArtist.bind(this);
@@ -21,28 +22,30 @@ class App extends Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
   
-    getArtist = () => {
-      axios.get(`https://rest.bandsintown.com/artists/${this.state.queryArtist}/events?app_id=${config.apiKey}`)
-        .then(function (response) {
-          console.log(response);
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
-    }
+  getArtist = () => {
+    axios.get(`https://rest.bandsintown.com/artists/${this.state.queryArtist}/events?app_id=${config.apiKey}`)
+      .then(function (response) {
+        console.log(response);
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+  }
 
   handleChange = (event) => {
-    this.setState({ queryArtist : event.target.value})
-    console.log('State: ', this.state)
+    this.setState({
+      queryArtist: event.target.value,
+      formattedArtistName: (event.target.value).replace(/ /i, '%20')
+    })
   }
 
   handleSubmit = (event) => {
     event.preventDefault();
-
+    this.getArtist();
   }
   
   render() {
-    console.log(this.getArtist())
+    console.log('State: ', this.state);
     return (
       <div className="App">
       <Header />
