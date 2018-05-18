@@ -25,10 +25,18 @@ class App extends Component {
   getArtist = () => {
     axios.get(`https://rest.bandsintown.com/artists/${this.state.queryArtist}/events?app_id=${config.apiKey}`)
       .then(function (response) {
+        if (response.data.length === 0) {
+          alert('Sorry, it looks like your artist is not touring at this time.');
+        }
+        //TODO:
+          //Commit if alert
+          //Fn for jsx formatting of return 
+          //Style Search and Return
         console.log(response);
       })
       .catch(function (error) {
         console.log(error);
+        alert('The name you entered is incorrect, please revise.')
       });
   }
 

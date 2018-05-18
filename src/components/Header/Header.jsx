@@ -11,7 +11,7 @@ const Header = () => {
       <div id="header-actions">
         <ul id="actions-list">
           <li><a>Home</a></li>
-          <li><a>Github</a></li>
+          <li><a href="https://github.com/JnnnLe" target="_blank">Github</a></li>
         </ul>
       </div>
     </div>
