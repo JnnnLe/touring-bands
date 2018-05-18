@@ -1,0 +1,23 @@
+.header {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr)
+}
+
+#header-title {
+  align-self: center;
+  font-family: 'Anton', sans-serif;
+  font-size: 2.5em;
+}
+
+ul#actions-list {
+  display: inline-flex;
+  float: right;
+  font-family: 'Playfair Display', serif;
+  font-weight: bold;
+  font-size: 1em
+}
+
+ul#actions-list li:not(:first-child):before {
+  content: '|';
+  padding: 0 1em 0 1em;
+}
