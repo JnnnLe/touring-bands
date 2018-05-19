@@ -8,7 +8,6 @@ const Search = (props) => {
       <form onSubmit={props.handleSubmit}>
         <input required type="text" placeholder="Search your favorite artist here.."
         onChange={props.handleChange} />
-        <br />  
       </form>
     </div>
   )
