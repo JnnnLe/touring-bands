@@ -1,40 +1,53 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import config from './config';
 import Header from './components/Header/Header';
 import Search from './components/Search/Search';
-import config from './config';
+import Result from './components/Result/Result';
 
 import './App.css';
-
-//get Artist
 
 class App extends Component {
   constructor(props) {
     super();
     this.state = {
       queryArtist: '',
-      formattedArtistName: ''
+      formattedArtistName: '',
+      response: null
     }
 
     this.getArtist = this.getArtist.bind(this);
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.displayTourDates = this.displayTourDates.bind(this);
   }
   
+  displayTourDates = (responseBody) => {
+    //display tour dates and links
+    return responseBody.map(tourInfo => {
+      console.log('Tour: ', tourInfo);
+      return 'Done';
+    })
+  }
+
   getArtist = () => {
+    const that = this;
     axios.get(`https://rest.bandsintown.com/artists/${this.state.queryArtist}/events?app_id=${config.apiKey}`)
       .then(function (response) {
 
         if (response.data.length === 0) {
           alert('Sorry, it looks like your artist is not touring at this time.');
-        }
+        } else {
 
-        //TODO:
-          //Commit if alert
-          //Fn for jsx formatting of return 
-          //Style Search and Return
-        console.log(response);
+          //TODO:
+            //Commit if alert
+            //Fn for jsx formatting of return 
+            //Style Search and Return
+          console.log('This is the response body:', response.data);
+          that.displayTourDates(response.data);
+          // that.setState({response : response.data})
+        }
       })
       .catch(function (error) {
         console.log(error);
@@ -72,5 +85,3 @@ class App extends Component {
 export default App;
 
 //TODO:
-  // fn for cleaning up query for bands with long names
-  // formatTourDates = () => {}
