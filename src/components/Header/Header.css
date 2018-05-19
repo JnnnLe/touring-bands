@@ -21,3 +21,4 @@ ul#actions-list li:not(:first-child):before {
   content: '|';
   padding: 0 1em 0 1em;
 }
+
