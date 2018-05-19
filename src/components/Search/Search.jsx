@@ -4,11 +4,11 @@ import './Search.css';
 
 const Search = (props) => {
   return (
-    <div>
+    <div className="search-bar">
       <form onSubmit={props.handleSubmit}>
-        <input type="text" onChange={props.handleChange} />
-        <br />
-        <input type="submit" value="Submit" />
+        <input required type="text" placeholder="Search your favorite artist here.."
+        onChange={props.handleChange} />
+        <br />  
       </form>
     </div>
   )

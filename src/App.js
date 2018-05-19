@@ -25,9 +25,11 @@ class App extends Component {
   getArtist = () => {
     axios.get(`https://rest.bandsintown.com/artists/${this.state.queryArtist}/events?app_id=${config.apiKey}`)
       .then(function (response) {
+
         if (response.data.length === 0) {
           alert('Sorry, it looks like your artist is not touring at this time.');
         }
+
         //TODO:
           //Commit if alert
           //Fn for jsx formatting of return 
@@ -43,7 +45,7 @@ class App extends Component {
   handleChange = (event) => {
     this.setState({
       queryArtist: event.target.value,
-      formattedArtistName: (event.target.value).replace(/ /i, '%20')
+      formattedArtistName: (event.target.value).replace(/ /g, '%20')
     })
   }
 
